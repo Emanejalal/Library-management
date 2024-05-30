@@ -12,7 +12,7 @@ import Detaille from './components/Book/BookDetails';
 import UserList from './components/User/UserList';
 import EditBook from './components/others/EditBook';
 import AddBookForm from './components/Book/AddBookForm'; // Importer le composant AddBookForm
-
+import Loans from './pages/Loans';
 const PrivateRoute = ({ children }) => {
   return localStorage.getItem('token') ? children : <Navigate to="/login" />;
 };
@@ -23,7 +23,7 @@ function MainContent() {
 
   return (
     <div>
-      {shouldShowNavbar && <Navbar />}
+      <Navbar />
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
@@ -35,6 +35,8 @@ function MainContent() {
         <Route path="/edit-book/:id" element={<PrivateRoute><EditBook /></PrivateRoute>} />
         <Route path="/add-book" element={<PrivateRoute><AddBookForm /></PrivateRoute>} />
         <Route path="/users" element={<PrivateRoute><UserList /></PrivateRoute>} />
+        <Route path="/loans" element={<PrivateRoute><Loans /></PrivateRoute>} />
+
       </Routes>
     </div>
   );

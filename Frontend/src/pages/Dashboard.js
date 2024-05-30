@@ -1,18 +1,18 @@
 import React from 'react';
 import '../style.css';
-import Navigation from '../components/Dashboard/Navigation';
 import Topbar from '../components/Dashboard/Topbar';
 import CardBox from '../components/Dashboard/CardBox';
-import Details from '../components/Dashboard/Details';
+import BookList from '../components/Dashboard/Details';
+import Loaans from '../components/Dashboard/loaans';
 
 function App() {
   return (
     <div className="container">
-      <Navigation />
       <div className="main">
         <Topbar />
         <CardBox />
-        <Details />
+        <BookList />
+        <Loaans/>
       </div>
     </div>
   );

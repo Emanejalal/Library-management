@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-function UserList() {
+function RecentCustomers() {
   const [customers, setCustomers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -52,7 +52,7 @@ function UserList() {
   return (
     <div className="recentCustomers">
       <div className="cardHeader">
-        
+        <h2>User List</h2>
       </div>
       <table>
         <tbody>
@@ -64,7 +64,6 @@ function UserList() {
                 <h4>{customer.email}</h4>
               </td>
               <td>
-                <button className="bg-slate-500 p-2 rounded-md text-white font-bold " onClick={() => handleDelete(customer.id)}>Delete</button>
               </td>
             </tr>
           ))}
@@ -74,4 +73,4 @@ function UserList() {
   );
 }
 
-export default UserList;
+export default RecentCustomers;
