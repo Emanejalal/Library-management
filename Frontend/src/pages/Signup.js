@@ -72,14 +72,20 @@ function Signup() {
             <input type="email" className="form-control" value={email} onChange={(e) => setEmail(e.target.value)} />
           </div>
           <div className="form-group">
-            <label>Passweeeord:</label>
+            <label>Password:</label>
             <input type="password" className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} />
           </div>
           <div className="form-group">
             <label>Confirm Password:</label>
             <input type="password" className="form-control" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
           </div>
-          
+          <div className="form-group">
+            <label>Role:</label>
+            <select className="form-control" value={role} onChange={(e) => setRole(e.target.value)}>
+              <option value="user">User</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
           <button type="submit" className="btn btn-primary btn-block mt-3">Sign Up</button>
         </form>
       </div>
