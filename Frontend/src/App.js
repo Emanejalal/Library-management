@@ -7,7 +7,7 @@ import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
 import Home from './pages/Home';
 import Books from './pages/Books';
-import Navbar from './components/Book/Navbar';
+import Navbar from './components/Navbar';
 import Detaille from './components/Book/BookDetails';
 import UserList from './components/User/UserList';
 import EditBook from './components/others/EditBook';
