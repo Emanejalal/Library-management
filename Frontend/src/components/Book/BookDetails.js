@@ -58,7 +58,7 @@ function Detaille() {
           <p><strong>Genre:</strong> {book.genre}</p>
           <p><strong>Year:</strong> {book.year}</p>
           <div className="flex justify-center mt-6">
-            <button onClick={() => navigate(`/edit-book/${id}`)} className="btn-primary mr-4 px-4 py-2 rounded-lg hover:bg-blue-500">Edit</button>
+            <button onClick={() => navigate(`/edit-book/${id}`)} className="btn-primary mr-4 px-4 py-2 rounded-lg hover:bg-blue-1000">Edit</button>
             <button onClick={handleDelete} className="btn-danger px-4 py-2 rounded-lg hover:bg-red-500">Delete</button>
           </div>
         </div>
