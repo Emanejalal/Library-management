@@ -1,10 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import RecentCustomers from './User';
+import { jwtDecode } from 'jwt-decode'; // Correct named import
 
 function BookList() {
   const [books, setBooks] = useState([]);
   const [error, setError] = useState(null);
+  const token = localStorage.getItem('token');
+  let role;
+
+  if (token) {
+    try {
+      const decodedToken = jwtDecode(token); // Use the correct named function
+      role = decodedToken.role;
+    } catch (error) {
+      console.error('Failed to decode token:', error);
+    }
+  }
 
   useEffect(() => {
     fetch('http://localhost:8084/api/books')
@@ -57,6 +69,7 @@ function BookList() {
                   <td>{book.genre}</td>
                   <td>{book.year}</td>
                   <td>
+                    <button onClick={() => handleDelete(book.id)}>Delete</button>
                   </td>
                 </tr>
               ))}
@@ -64,9 +77,11 @@ function BookList() {
           </table>
         )}
       </div>
-      <div className="recentCustomers">
-        <RecentCustomers />
-      </div>
+      {role === 'admin' && (
+        <div className="recentCustomers">
+          <RecentCustomers />
+        </div>
+      )}
     </div>
   );
 }
