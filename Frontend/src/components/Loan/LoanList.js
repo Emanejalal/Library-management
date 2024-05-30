@@ -66,11 +66,11 @@ function LoanList() {
         ) : (
           <table className="w-full border-collapse mt-2">
             <thead>
-              <tr>
-                <td className="font-semibold">User</td>
-                <td className="font-semibold">Book</td>
-                <td className="font-semibold">Loan Date</td>
-                <td className="font-semibold">Return Date</td>
+              <tr className="bg-blue-50">
+                <th className="py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">User</th>
+                <th className="py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Book</th>
+                <th className=" text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Loan Date</th>
+                <th className="py-3  text-right   text-xs font-medium text-gray-500 uppercase tracking-wider">Return Date</th>
               </tr>
             </thead>
             <tbody>

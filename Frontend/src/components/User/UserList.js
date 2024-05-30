@@ -61,9 +61,10 @@ function UserList() {
         ) : (
           <table className="w-full border-collapse mt-2">
             <thead>
-              <tr>
-                <td className="font-semibold">Email</td>
-                <td className="font-semibold">Role</td>
+              <tr className="bg-blue-50">
+                <th className="py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                <th className="py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
+                <th className="py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"></th>
               </tr>
             </thead>
             <tbody>
