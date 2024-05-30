@@ -50,7 +50,7 @@ function BookList() {
         ) : (
           <table className="w-full border-collapse">
             <thead>
-              <tr className="bg-blue-50">
+              <tr className="bg-blue-100">
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Author</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Genre</th>
