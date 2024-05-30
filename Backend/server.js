@@ -85,7 +85,6 @@ app.post('/login', async (req, res) => {
   }
 });
 
-
 // GET a book by ID
 app.get('/api/books/:id', async (req, res) => {
   const { id } = req.params;
@@ -254,6 +253,38 @@ app.delete('/api/users/:id', async (req, res) => {
   } catch (error) {
     console.error('Error deleting user:', error);
     res.status(500).json({ error: 'An error occurred while deleting the user.' });
+  }
+});
+
+app.get('/api/Bookcount', async (req, res) => {
+  try {
+    const bookCount = await Book.count();
+    console.log('bookCount : ',bookCount)
+    res.status(200).json({ bookCount });
+  } catch (error) {
+    console.error('Error fetching book count:', error);
+    res.status(500).json({ error: 'An error occurred while fetching the book count.' });
+  }
+});
+// Backend API route to fetch loans count
+app.get('/api/loanscount', async (req, res) => {
+  try {
+    const loansCount = await Loan.count();
+    res.status(200).json({ loansCount });
+  } catch (error) {
+    console.error('Error fetching loans count:', error);
+    res.status(500).json({ error: 'An error occurred while fetching the loans count.' });
+  }
+});
+
+// Backend API route to fetch users count
+app.get('/api/userscount', async (req, res) => {
+  try {
+    const usersCount = await User.count();
+    res.status(200).json({ usersCount });
+  } catch (error) {
+    console.error('Error fetching users count:', error);
+    res.status(500).json({ error: 'An error occurred while fetching the users count.' });
   }
 });
 
