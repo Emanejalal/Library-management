@@ -18,20 +18,6 @@ const containerStyle = {
 };
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function Signup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -78,7 +64,7 @@ function Signup() {
 
   return (
     <div style={containerStyle}>
-      <div className="container my-5">
+      <div className="container my-9 py-16 bg-gradient-to-r from-indigo-500">
         <h2 className="text-center">Sign Up</h2>
         <form onSubmit={handleSubmit} className="mx-auto" style={{ maxWidth: '400px' }}>
           <div className="form-group">
@@ -86,20 +72,14 @@ function Signup() {
             <input type="email" className="form-control" value={email} onChange={(e) => setEmail(e.target.value)} />
           </div>
           <div className="form-group">
-            <label>Password:</label>
+            <label>Passweeeord:</label>
             <input type="password" className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} />
           </div>
           <div className="form-group">
             <label>Confirm Password:</label>
             <input type="password" className="form-control" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
           </div>
-          <div className="form-group">
-            <label>Role:</label>
-            <select className="form-control" value={role} onChange={(e) => setRole(e.target.value)}>
-              <option value="user">User</option>
-              <option value="admin">Admin</option>
-            </select>
-          </div>
+          
           <button type="submit" className="btn btn-primary btn-block mt-3">Sign Up</button>
         </form>
       </div>

@@ -13,8 +13,9 @@ import UserList from './components/User/UserList';
 import EditBook from './components/others/EditBook';
 import AddBookForm from './components/Book/AddBookForm'; // Importer le composant AddBookForm
 import Loans from './pages/Loans';
+import AuthPage from './pages/AuthPage';
 const PrivateRoute = ({ children }) => {
-  return localStorage.getItem('token') ? children : <Navigate to="/login" />;
+  return localStorage.getItem('token') ? children : <Navigate to="/AuthPage" />;
 };
 
 function MainContent() {
@@ -28,6 +29,7 @@ function MainContent() {
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/AuthPage" element={<AuthPage />} />
         <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
         <Route path="/home" element={<PrivateRoute><Home /></PrivateRoute>} />
         <Route path="/books" element={<PrivateRoute><Books /></PrivateRoute>} />

@@ -1,5 +1,5 @@
 import React from 'react';
-import landingImage from '../images/2.png'; // Assurez-vous d'avoir une image à ce chemin
+import landingImage from '../images/lib.jpg'; // Assurez-vous d'avoir une image à ce chemin
 
 const containerStyle = {
   display: 'flex',
