@@ -46,7 +46,8 @@ function BookList() {
                 <td>Name</td>
                 <td>Author</td>
                 <td>Genre</td>
-                <td>Year</td>
+                <th className="py-3 text-left ">Year</th>
+
               </tr>
             </thead>
             <tbody>
