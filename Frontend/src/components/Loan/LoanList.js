@@ -55,7 +55,7 @@ function LoanList() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-100 flex justify-center items-center">
+    <div className=" bg-gray-100 flex justify-center ">
       <div className="w-full max-w-screen-lg">
         <div className="relative bg-white p-5 shadow-lg rounded-2xl">
           <div className="flex justify-between items-start mb-5">
@@ -76,7 +76,7 @@ function LoanList() {
               </thead>
               <tbody>
                 {loans.map(loan => (
-                  <tr key={loan.id} className="border-b last:border-0 hover:bg-slate-500 hover:text-white">
+                  <tr key={loan.id} className="border-b last:border-0 hover:bg-slate-600 hover:text-white">
                     <td className="py-2">{loan.userName || 'Unknown User'}</td>
                     <td className="py-2">{loan.bookName || 'Unknown Book'}</td>
                     <td className="py-2 text-center">{new Date(loan.loanDate).toLocaleDateString()}</td>
