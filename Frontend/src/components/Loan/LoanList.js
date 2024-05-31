@@ -59,7 +59,6 @@ function LoanList() {
       <div className="relative grid min-h-[500px] bg-white p-5 shadow-lg rounded-2xl">
         <div className="flex justify-between items-start mb-5">
           <h2 className="font-semibold text-blue-900">Loan List</h2>
-          <Link to="/add-loan" className="relative py-1.5 px-3 bg-blue-900 text-white no-underline rounded-md">Add Loan</Link>
         </div>
         {error ? (
           <div className="text-red-500 text-center">{error}</div>
