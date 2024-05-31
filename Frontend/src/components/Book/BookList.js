@@ -43,7 +43,7 @@ function BookList() {
       <div className="relative grid min-h-[500px] bg-white p-5 shadow-lg rounded-2xl overflow-x-auto">
         <div className="flex justify-between items-start mb-5">
           <h2 className="font-semibold ml-2 text-4xl text-[#d4af7a]">Book List</h2>
-          <Link to="/add-book" className="relative font-bold py-1.5 px-5 mx-5 bg-slate-500 text-white no-underline rounded-md">
+          <Link to="/add-book" className="relative font-bold py-1.5 px-5 mx-5 bg-slate-600 text-white no-underline rounded-md">
             Add Book
           </Link>
         </div>

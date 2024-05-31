@@ -118,7 +118,7 @@ app.get('/api/loans/:id', verifyToken, async (req, res) => {
     const loan = await Loan.findByPk(id, {
       include: [
         { model: User },
-        { model: Book }
+        { model: Book }     
       ]
     });
     if (!loan) {
