@@ -41,7 +41,7 @@ function AddBookForm() {
   return (
     <div className="container my-5">
       <div className="add-book-form bg-gray-100 p-6 rounded-lg">
-        <h2 className="text-center text-2xl mb-4">Add Book</h2>
+        <h2 className="text-center text-[#d4af7a] text-2xl mb-4">Add Book</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group mb-3">
             <label htmlFor="title">Title</label>
@@ -60,7 +60,7 @@ function AddBookForm() {
             <input type="text" className="form-control" id="year" name="year" value={formData.year} onChange={handleChange} />
           </div>
           <div className="flex justify-end">
-            <button type="submit" className="btn btn-primary">Add</button>
+            <button type="submit" className="bg-slate-600">Add</button>
           </div>
         </form>
       </div>

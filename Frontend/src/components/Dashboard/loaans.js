@@ -58,27 +58,28 @@ function Loaans() {
     <div className="container mx-auto my-10">
       <div className="relative grid min-h-[500px] bg-white p-5 shadow-lg rounded-2xl">
         <div className="flex justify-between items-start mb-5">
-          <h2 className="font-semibold text-blue-900">Loan List</h2>
+          <h2 className="font-semibold text-4xl text-[#d4af7a]">Loan List</h2>
         </div>
         {error ? (
           <div className="text-red-500 text-center">{error}</div>
         ) : (
           <table className="w-full border-collapse mt-2">
             <thead>
-              <tr>
-                <td className="font-semibold">User</td>
-                <td className="font-semibold">Book</td>
-                <td className="font-semibold">Loan Date</td>
-                <td className="font-semibold">Return Date</td>
-              </tr>
+              <tr className="bg-[#ebdece] ">
+                <th className="px-6 py-3 text-left font-bold text-lg text-gray-500 uppercase tracking-wider">User</th>
+                <th className="px-6 py-3 text-left font-bold text-lg text-gray-500 uppercase tracking-wider">Book</th>
+                <th className="px-6 text-center font-bold text-lg text-gray-500 uppercase tracking-wider">Loan Date</th>
+                <th className="px-6 py-3  text-right  font-bold text-lg  text-gray-500 uppercase tracking-wider">Return Date</th>              </tr>
             </thead>
             <tbody>
               {loans.map(loan => (
-                <tr key={loan.id} className="border-b last:border-0 hover:bg-blue-900 hover:text-white">
+                <tr key={loan.id} className="border-b last:border-0 hover:bg-slate-500 hover:text-white">
                   <td className="py-2">{loan.userName || 'Unknown User'}</td>
                   <td className="py-2">{loan.bookName || 'Unknown Book'}</td>
                   <td className="py-2 text-center">{new Date(loan.loanDate).toLocaleDateString()}</td>
                   <td className="py-2 text-right">{loan.returnDate ? new Date(loan.returnDate).toLocaleDateString() : 'Not Returned'}</td>
+                  <td className="py-2 text-right">
+                  </td>
                 </tr>
               ))}
             </tbody>

@@ -29,6 +29,8 @@ function Navbar() {
           <Link className="text-gray-300 hover:text-[#d4af7a] hover:border hover:border-transparent px-4 font-bold no-underline" to="/dashboard">Dashboard</Link>
           <Link className="text-gray-300 hover:text-[#d4af7a] hover:border hover:border-transparent px-4 font-bold no-underline" to="/books">Books</Link>
           <Link className="text-gray-300 hover:text-[#d4af7a] hover:border hover:border-transparent px-4 font-bold no-underline" to="/loans">Loans</Link>
+          <Link className="text-gray-300 hover:text-[#d4af7a] hover:border hover:border-transparent px-4 font-bold no-underline" to="/About">About us</Link>
+          
           {token && role === 'admin' && (
             <Link className="text-gray-300 hover:text-[#d4af7a] hover:border hover:border-transparent hover:rounded px-4 font-bold no-underline" to="/users">Users</Link>
           )}

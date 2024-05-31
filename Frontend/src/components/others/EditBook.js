@@ -49,7 +49,7 @@ function EditBook() {
   return (
     <div className="container my-5">
       <div className="edit-book bg-gray-100 p-6 rounded-lg">
-        <h3 className="text-center text-2xl mb-4">Edit Book</h3>
+        <h3 className="text-center text-[#d4af7a] text-2xl mb-4">Edit Book</h3>
         <form onSubmit={handleSubmit}>
           <div className="form-group mb-3">
             <label htmlFor="title">Title</label>
@@ -69,7 +69,7 @@ function EditBook() {
           </div>
  
           <div className="flex justify-end">
-            <button type="submit" className="btn btn-primary">Save</button>
+            <button type="submit" className="bg-slate-600">Save</button>
           </div>
         </form>
       </div>

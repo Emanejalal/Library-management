@@ -54,7 +54,7 @@ function AddLoan() {
   return (
     <div className="container my-5">
       <div className="add-loan bg-gray-100 p-6 rounded-lg">
-        <h3 className="text-center text-2xl mb-4">Add Loan for {book.title}</h3>
+        <h3 className="text-center text-[#d4af7a] text-2xl mb-4">Add Loan for {book.title}</h3>
         <form onSubmit={handleSubmit}>
           <div className="form-group mb-3">
             <label htmlFor="loanDate">Date of Loan</label>
@@ -79,7 +79,7 @@ function AddLoan() {
             />
           </div>
           <div className="flex justify-end">
-            <button type="submit" className="btn btn-primary">Add Loan</button>
+            <button type="submit" className="bg-slate-600">Add Loan</button>
           </div>
         </form>
       </div>

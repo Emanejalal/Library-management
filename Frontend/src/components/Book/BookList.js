@@ -42,20 +42,22 @@ function BookList() {
     <div className="container mx-auto my-10">
       <div className="relative grid min-h-[500px] bg-white p-5 shadow-lg rounded-2xl overflow-x-auto">
         <div className="flex justify-between items-start mb-5">
-          <h2 className="font-semibold text-blue-900">Book List</h2>
-          <Link to="/add-book" className="relative py-1.5 px-3 bg-blue-900 text-white no-underline rounded-md">Add Book</Link>
+          <h2 className="font-semibold ml-2 text-4xl text-[#d4af7a]">Book List</h2>
+          <Link to="/add-book" className="relative font-bold py-1.5 px-5 mx-5 bg-slate-500 text-white no-underline rounded-md">
+            Add Book
+          </Link>
         </div>
         {error ? (
           <div className="text-red-500 text-center">{error}</div>
         ) : (
           <table className="w-full border-collapse">
             <thead>
-              <tr className="bg-blue-100">
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Author</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Genre</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Year</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+              <tr className="bg-[#ebdece]">
+                <th className="px-6 py-3 font-bold text-lg text-left text-gray-500 uppercase tracking-wider">Name</th>
+                <th className="px-6 py-3 font-bold text-lg text-left text-gray-500 uppercase tracking-wider">Author</th>
+                <th className="px-6 py-3 font-bold text-lg text-left text-gray-500 uppercase tracking-wider">Genre</th>
+                <th className="px-6 py-3 font-bold text-lg text-left text-gray-500 uppercase tracking-wider">Year</th>
+                <th className="px-6 py-3 font-bold text-lg text-center text-gray-500 uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -66,9 +68,9 @@ function BookList() {
                   <td className="px-6 py-4 whitespace-nowrap">{book.genre}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{book.year}</td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <Link to={`/add-loan/${book.id}`} className="btn bg-blue-900">Loan</Link>
-                    <Link to={`/edit-book/${book.id}`} className="btn btn-secondary ml-2">Edit</Link>
-                    <button onClick={() => handleDelete(book.id)} className="btn bg-red-500 ml-2">Delete</button>
+                    <Link to={`/add-loan/${book.id}`} className="btn btn-secondary ml-2 w-24">Loan</Link>
+                    <Link to={`/edit-book/${book.id}`} className="btn btn-secondary ml-2 w-24">Edit</Link>
+                    <button onClick={() => handleDelete(book.id)} className="btn btn-secondary ml-2 w-24">Delete</button>
                   </td>
                 </tr>
               ))}

@@ -82,7 +82,7 @@ function EditLoan() {
   return (
     <div className="container mx-auto my-10">
       <div className="relative grid min-h-[500px] bg-white p-5 shadow-lg rounded-2xl">
-        <h2 className="font-semibold text-blue-900 mb-5">Edit Loan</h2>
+        <h2 className="font-semibold text-[#d4af7a] mb-5">Edit Loan</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="bookId">
@@ -134,7 +134,7 @@ function EditLoan() {
           <div className="flex items-center justify-between">
             <button
               type="submit"
-              className="bg-blue-900 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="bg-slate-600 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               disabled={!loan}
             >
               Save
