@@ -71,6 +71,7 @@ function LoanList() {
                 <th className="py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Book</th>
                 <th className=" text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Loan Date</th>
                 <th className="py-3  text-right   text-xs font-medium text-gray-500 uppercase tracking-wider">Return Date</th>
+                <th className="py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -80,6 +81,9 @@ function LoanList() {
                   <td className="py-2">{loan.bookName || 'Unknown Book'}</td>
                   <td className="py-2 text-center">{new Date(loan.loanDate).toLocaleDateString()}</td>
                   <td className="py-2 text-right">{loan.returnDate ? new Date(loan.returnDate).toLocaleDateString() : 'Not Returned'}</td>
+                  <td className="py-2 text-right">
+                    <Link to={`/edit-loan/${loan.id}`} className="text-blue-500">Edit</Link>
+                  </td>
                 </tr>
               ))}
             </tbody>

@@ -84,7 +84,52 @@ app.post('/login', async (req, res) => {
     res.status(500).json({ success: false, message: 'Internal server error', error: error.message });
   }
 });
+////////////////////////////////////////////////////////////////////////////////////
+// PUT update a loan by ID
+app.put('/api/loans/:id', verifyToken, async (req, res) => {
+  const { id } = req.params;
+  const { bookId, loanDate, returnDate } = req.body;
 
+  try {
+    const loan = await Loan.findByPk(id);
+    if (!loan) {
+      return res.status(404).json({ error: 'Loan not found' });
+    }
+
+    loan.bookId = bookId;
+    loan.loanDate = loanDate;
+    loan.returnDate = returnDate;
+
+    await loan.save();
+
+    res.status(200).json({ success: true, message: 'Loan updated successfully', loan });
+  } catch (error) {
+    console.error('Error updating loan:', error);
+    res.status(500).json({ error: 'An error occurred while updating the loan.' });
+  }
+});
+
+////////////////////////////////////////////////////////////////////////////////////
+// GET a loan by ID
+app.get('/api/loans/:id', verifyToken, async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const loan = await Loan.findByPk(id, {
+      include: [
+        { model: User },
+        { model: Book }
+      ]
+    });
+    if (!loan) {
+      return res.status(404).json({ error: 'Loan not found' });
+    }
+    res.status(200).json(loan);
+  } catch (error) {
+    console.error('Error fetching loan:', error);
+    res.status(500).json({ error: 'An error occurred while fetching the loan.' });
+  }
+});
 // GET a book by ID
 app.get('/api/books/:id', async (req, res) => {
   const { id } = req.params;
