@@ -66,8 +66,9 @@ function BookList() {
                   <td className="px-6 py-4 whitespace-nowrap">{book.genre}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{book.year}</td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <Link to={`/edit-book/${book.id}`} className="btn btn-secondary">Edit</Link>
-                    <button onClick={() => handleDelete(book.id)} className="btn bg-blue-900 ml-2">Delete</button>
+                    <Link to={`/add-loan/${book.id}`} className="btn bg-blue-900">Loan</Link>
+                    <Link to={`/edit-book/${book.id}`} className="btn btn-secondary ml-2">Edit</Link>
+                    <button onClick={() => handleDelete(book.id)} className="btn bg-red-500 ml-2">Delete</button>
                   </td>
                 </tr>
               ))}
