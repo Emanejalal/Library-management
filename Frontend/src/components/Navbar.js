@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode'; // Correct named import
+import logo from '../images/logo.png'; // Import the logo image
+import '../App.css'; // Import the CSS file for Navbar styling
 
 function Navbar() {
   const navigate = useNavigate();
@@ -24,7 +26,10 @@ function Navbar() {
   return (
     <nav className="backdrop-filter backdrop-blur-md  p-4">
       <div className="container mx-auto flex justify-between items-center space-x-8">
-        <Link className="text-xl text-white mr-8 hover:no-underline font-bold no-underline" to="/">Library</Link>
+        {/* Use img tag with src set to the logo image */}
+        <Link to="/">
+          <img src={logo} alt="Logo" className="logo" />
+        </Link>
         <div className="flex space-x-8">
           <Link className="text-gray-300 hover:text-[#d4af7a] hover:border hover:border-transparent px-4 font-bold no-underline" to="/dashboard">Dashboard</Link>
           <Link className="text-gray-300 hover:text-[#d4af7a] hover:border hover:border-transparent px-4 font-bold no-underline" to="/books">Books</Link>
