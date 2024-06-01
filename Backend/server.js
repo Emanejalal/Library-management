@@ -108,6 +108,32 @@ app.put('/api/loans/:id', verifyToken, async (req, res) => {
     res.status(500).json({ error: 'An error occurred while updating the loan.' });
   }
 });
+/////////////////////////////////////////////////////////////////////////////////////////
+app.post('/api/loans', async (req, res) => {
+  const { userId, bookId, loanDate, returnDate } = req.body;
+
+  try {
+    // Check if the user exists
+    const user = await User.findByPk(userId);
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'User not found' });
+    }
+
+    // Check if the book exists
+    const book = await Book.findByPk(bookId);
+    if (!book) {
+      return res.status(404).json({ success: false, message: 'Book not found' });
+    }
+
+    // Create a new loan
+    const newLoan = await Loan.create({ userId, bookId, loanDate, returnDate });
+    res.status(201).json({ success: true, message: 'Loan added successfully', loan: newLoan });
+  } catch (error) {
+    console.error('Error adding loan:', error);
+    res.status(500).json({ success: false, message: 'Internal server error', error: error.message });
+  }
+});
+
 
 ////////////////////////////////////////////////////////////////////////////////////
 // GET a loan by ID

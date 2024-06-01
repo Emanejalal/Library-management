@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { jwtDecode } from 'jwt-decode'; // Correct named import
 
 function AddLoan() {
   const { id } = useParams();
@@ -17,18 +18,25 @@ function AddLoan() {
       .catch(error => console.error('Error fetching book:', error));
   }, [id]);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setLoanData(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    const token = localStorage.getItem('token'); // Assuming you store your token in localStorage
-    const userId = localStorage.getItem('userId'); // Assuming you store the userId in localStorage
+    const token = localStorage.getItem('token');
+    let userId;
+
+    if (token) {
+      try {
+        const decodedToken = jwtDecode(token);
+        userId = decodedToken.id;
+      } catch (error) {
+        console.error('Failed to decode token:', error);
+      }
+    }
+
+    if (!userId) {
+      console.error('User ID not found in token');
+      return;
+    }
+
     fetch('http://localhost:8084/api/loans', {
       method: 'POST',
       headers: {
@@ -46,9 +54,17 @@ function AddLoan() {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        navigate('/loan-list');
+        navigate('/loans');
       })
       .catch(error => console.error('Error adding loan:', error));
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setLoanData(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
   };
 
   return (
