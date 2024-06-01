@@ -64,26 +64,28 @@ function Loans() {
             {error ? (
               <div className="text-red-500 text-center">{error}</div>
             ) : (
-              <table className="w-full border-collapse mt-2">
-                <thead>
-                  <tr className="bg-[#ebdece] transition-colors duration-500">
-                    <th className="px-6 py-3 text-left font-bold text-lg text-gray-500 uppercase tracking-wider">User</th>
-                    <th className="px-6 py-3 text-left font-bold text-lg text-gray-500 uppercase tracking-wider">Book</th>
-                    <th className="px-6 text-center font-bold text-lg text-gray-500 uppercase tracking-wider">Loan Date</th>
-                    <th className="px-6 py-3 text-right font-bold text-lg text-gray-500 uppercase tracking-wider">Return Date</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {loans.map(loan => (
-                    <tr key={loan.id} className="border-b last:border-0 transition-colors duration-500 hover:bg-gray-700 hover:text-white">
-                      <td className="py-2">{loan.userName || 'Unknown User'}</td>
-                      <td className="py-2">{loan.bookName || 'Unknown Book'}</td>
-                      <td className="py-2 text-center">{new Date(loan.loanDate).toLocaleDateString()}</td>
-                      <td className="py-2 text-right">{loan.returnDate ? new Date(loan.returnDate).toLocaleDateString() : 'Not Returned'}</td>
+              <div className="overflow-auto" style={{ maxHeight: '500px' }}>
+                <table className="w-full border-collapse mt-2">
+                  <thead>
+                    <tr className="bg-[#ebdece] transition-colors duration-500">
+                      <th className="px-6 py-3 text-left font-bold text-lg text-gray-500 uppercase tracking-wider">User</th>
+                      <th className="px-6 py-3 text-left font-bold text-lg text-gray-500 uppercase tracking-wider">Book</th>
+                      <th className="px-6 text-center font-bold text-lg text-gray-500 uppercase tracking-wider">Loan Date</th>
+                      <th className="px-6 py-3 text-right font-bold text-lg text-gray-500 uppercase tracking-wider">Return Date</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {loans.map(loan => (
+                      <tr key={loan.id} className="border-b last:border-0 transition-colors duration-500 hover:bg-gray-700 hover:text-white">
+                        <td className="py-2">{loan.userName || 'Unknown User'}</td>
+                        <td className="py-2">{loan.bookName || 'Unknown Book'}</td>
+                        <td className="py-2 text-center">{new Date(loan.loanDate).toLocaleDateString()}</td>
+                        <td className="py-2 text-right">{loan.returnDate ? new Date(loan.returnDate).toLocaleDateString() : 'Not Returned'}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             )}
           </div>
         </div>

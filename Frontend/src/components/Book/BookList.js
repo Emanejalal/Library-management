@@ -1,10 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { jwtDecode } from 'jwt-decode'; // Correct named impor
 
 function BookList() {
   const [books, setBooks] = useState([]);
   const [error, setError] = useState(null);
+  const token = localStorage.getItem('token');
+  let role;
 
+  if (token) {
+    try {
+      const decodedToken = jwtDecode(token); // Use the correct named function
+      role = decodedToken.role;
+    } catch (error) {
+      console.error('Failed to decode token:', error);
+    }
+  }
   useEffect(() => {
     const fetchBooks = async () => {
       try {
@@ -43,9 +54,11 @@ function BookList() {
       <div className="relative grid min-h-[500px] bg-white p-5 shadow-lg rounded-2xl overflow-x-auto">
         <div className="flex justify-between items-start mb-5">
           <h2 className="font-semibold ml-2 text-4xl text-[#d4af7a]">Book List</h2>
-          <Link to="/add-book" className="relative font-bold py-1.5 px-5 mx-5 bg-slate-600 text-white no-underline rounded-md">
-            Add Book
-          </Link>
+          {token && role === 'admin' && (
+            <Link to="/add-book" className="relative font-bold py-1.5 px-5 mx-5 bg-slate-600 text-white no-underline rounded-md">
+              Add Book
+            </Link>)}
+
         </div>
         {error ? (
           <div className="text-red-500 text-center">{error}</div>
@@ -68,9 +81,14 @@ function BookList() {
                   <td className="px-6 py-4 whitespace-nowrap">{book.genre}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{book.year}</td>
                   <td className="px-6 py-4 whitespace-nowrap">
+
+                    {token && role === 'admin' && (
+                      <Link to={`/edit-book/${book.id}`} className="btn btn-secondary ml-2 w-24">Edit</Link>
+                    )}
                     <Link to={`/add-loan/${book.id}`} className="btn btn-secondary ml-2 w-24">Loan</Link>
-                    <Link to={`/edit-book/${book.id}`} className="btn btn-secondary ml-2 w-24">Edit</Link>
-                    <button onClick={() => handleDelete(book.id)} className="btn btn-secondary ml-2 w-24">Delete</button>
+                    {token && role === 'admin' && (
+                      <button onClick={() => handleDelete(book.id)} className="btn btn-secondary ml-2 w-24">Delete</button>
+                    )}
                   </td>
                 </tr>
               ))}

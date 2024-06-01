@@ -1,4 +1,3 @@
-// RecentCustomers.js
 import React, { useState, useEffect } from 'react';
 
 function RecentCustomers() {
@@ -55,24 +54,22 @@ function RecentCustomers() {
       <div className="cardHeader mb-1">
         <h2 className="text-4xl text-[#d4af7a] my-[20px]">User List</h2>
       </div>
-      <table className="w-full">
-        <tbody>
-          {customers.map(customer => (
-            <tr key={customer.id} className="border-b last:border-0 transition-colors duration-500 hover:bg-gray-700 hover:text-white">
-              <td className="py-3 px-2 w-16">
-                <div className="relative w-10 h-10 rounded-full overflow-hidden">
-                  {/* Placeholder for user image if you have any */}
-                </div>
-              </td>
-
-              <tr className="border-b last:border-0  hover:text-white">
-                <td className=" px-6 py-4 whitespace-nowrap">{customer.email}</td>
-
+      <div className="overflow-auto" style={{ maxHeight: '500px' }}>
+        <table className="w-full">
+          <tbody>
+            {customers.map(customer => (
+              <tr key={customer.id} className="border-b last:border-0 transition-colors duration-500 hover:bg-gray-700 hover:text-white">
+                <td className="py-3 px-2 w-16">
+                  <div className="relative w-10 h-10 rounded-full overflow-hidden">
+                    {/* Placeholder for user image if you have any */}
+                  </div>
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap">{customer.email}</td>
               </tr>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
