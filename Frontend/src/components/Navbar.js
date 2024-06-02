@@ -43,7 +43,7 @@ function Navbar() {
         <div className="ml-auto flex space-x-8">
           {token ? (
             <button
-              className="text-white bg-[#d4af7a]  w-fit border-transparent rounded px-4p py-2 font-bold no-underline"
+              className="text-white bg-[#d4af7a]  w-fit border-transparent rounded px-4 py-2 font-bold no-underline"
               onClick={handleLogout}
             >
               Logout

@@ -26,6 +26,8 @@ sequelize.sync({ alter: true })
     console.error('Error creating database:', err);
   });
 
+
+//SIGN UP//
 app.post('/signup', async (req, res) => {
   const { email, password, role } = req.body;
 
@@ -49,6 +51,7 @@ app.post('/signup', async (req, res) => {
   }
 });
 
+//LOGIN//
 app.post('/login', async (req, res) => {
   const { email, password } = req.body;
   
@@ -84,8 +87,8 @@ app.post('/login', async (req, res) => {
     res.status(500).json({ success: false, message: 'Internal server error', error: error.message });
   }
 });
-////////////////////////////////////////////////////////////////////////////////////
-// PUT update a loan by ID
+
+//UPDATE LOAN//
 app.put('/api/loans/:id', verifyToken, async (req, res) => {
   const { id } = req.params;
   const { bookId, loanDate, returnDate } = req.body;
@@ -108,153 +111,8 @@ app.put('/api/loans/:id', verifyToken, async (req, res) => {
     res.status(500).json({ error: 'An error occurred while updating the loan.' });
   }
 });
-/////////////////////////////////////////////////////////////////////////////////////////
-app.post('/api/loans', async (req, res) => {
-  const { userId, bookId, loanDate, returnDate } = req.body;
 
-  try {
-    // Check if the user exists
-    const user = await User.findByPk(userId);
-    if (!user) {
-      return res.status(404).json({ success: false, message: 'User not found' });
-    }
-
-    // Check if the book exists
-    const book = await Book.findByPk(bookId);
-    if (!book) {
-      return res.status(404).json({ success: false, message: 'Book not found' });
-    }
-
-    // Create a new loan
-    const newLoan = await Loan.create({ userId, bookId, loanDate, returnDate });
-    res.status(201).json({ success: true, message: 'Loan added successfully', loan: newLoan });
-  } catch (error) {
-    console.error('Error adding loan:', error);
-    res.status(500).json({ success: false, message: 'Internal server error', error: error.message });
-  }
-});
-
-
-////////////////////////////////////////////////////////////////////////////////////
-// GET a loan by ID
-app.get('/api/loans/:id', verifyToken, async (req, res) => {
-  const { id } = req.params;
-
-  try {
-    const loan = await Loan.findByPk(id, {
-      include: [
-        { model: User },
-        { model: Book }     
-      ]
-    });
-    if (!loan) {
-      return res.status(404).json({ error: 'Loan not found' });
-    }
-    res.status(200).json(loan);
-  } catch (error) {
-    console.error('Error fetching loan:', error);
-    res.status(500).json({ error: 'An error occurred while fetching the loan.' });
-  }
-});
-// GET a book by ID
-app.get('/api/books/:id', async (req, res) => {
-  const { id } = req.params;
-
-  try {
-    const book = await Book.findByPk(id);
-    if (!book) {
-      return res.status(404).json({ error: 'Book not found' });
-    }
-    res.status(200).json(book);
-  } catch (error) {
-    console.error('Error fetching book:', error);
-    res.status(500).json({ error: 'An error occurred while fetching the book.' });
-  }
-});
-
-// PUT update a book by ID
-app.put('/api/books/:id', async (req, res) => {
-  const { id } = req.params;
-  const { title, author, genre, year, description } = req.body;
-
-  try {
-    const book = await Book.findByPk(id);
-    if (!book) {
-      return res.status(404).json({ error: 'Book not found' });
-    }
-
-    book.title = title;
-    book.author = author;
-    book.genre = genre;
-    book.year = year;
-    book.description = description;
-
-    await book.save();
-
-    res.status(200).json({ success: true, message: 'Book updated successfully', book });
-  } catch (error) {
-    console.error('Error updating book:', error);
-    res.status(500).json({ error: 'An error occurred while updating the book.' });
-  }
-});
-
-app.get('/api/users/:id', async (req, res) => {
-  const { id } = req.params;
-
-  try {
-    const user = await User.findByPk(id);
-    if (!user) {
-      return res.status(404).json({ error: 'Book not found' });
-    }
-    res.status(200).json(user);
-  } catch (error) {
-    console.error('Error fetching users:', error);
-    res.status(500).json({ error: 'An error occurred while fetching the users.' });
-  }
-});
-
-// GET all books
-app.get('/api/books', async (req, res) => {
-  try {
-    const books = await Book.findAll();
-    res.status(200).json(books);
-  } catch (error) {
-    console.error('Error fetching books:', error);
-    res.status(500).json({ error: 'An error occurred while fetching books.' });
-  }
-});
-
-// server.js
-
-app.post('/api/books', async (req, res) => {
-  const { title, author, genre, year } = req.body;
-
-  try {
-    const newBook = await Book.create({ title, author, genre, year });
-    res.status(201).json(newBook);
-  } catch (error) {
-    console.error('Error adding book:', error);
-    res.status(500).json({ error: 'An error occurred while adding the book.' });
-  }
-});
-
-
-// server.js
-
-app.post('/api/books', async (req, res) => {
-  const { title, author, genre, year } = req.body;
-
-  try {
-    const newBook = await Book.create({ title, author, genre, year });
-    res.status(201).json(newBook);
-  } catch (error) {
-    console.error('Error adding book:', error);
-    res.status(500).json({ error: 'An error occurred while adding the book.' });
-  }
-});
-
-
-// Backend API route to fetch loans
+// GET BOOKS // 
 app.get('/api/loans', verifyToken, async (req, res) => {
   try {
     console.log("User role:", req.userRole); // For debugging
@@ -281,7 +139,155 @@ app.get('/api/loans', verifyToken, async (req, res) => {
   }
 });
 
+//ADD LOAN//
+app.post('/api/loans', async (req, res) => {
+  const { userId, bookId, loanDate, returnDate } = req.body;
 
+  try {
+    // Check if the user exists
+    const user = await User.findByPk(userId);
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'User not found' });
+    }
+
+    // Check if the book exists
+    const book = await Book.findByPk(bookId);
+    if (!book) {
+      return res.status(404).json({ success: false, message: 'Book not found' });
+    }
+
+    // Create a new loan
+    const newLoan = await Loan.create({ userId, bookId, loanDate, returnDate });
+    res.status(201).json({ success: true, message: 'Loan added successfully', loan: newLoan });
+  } catch (error) {
+    console.error('Error adding loan:', error);
+    res.status(500).json({ success: false, message: 'Internal server error', error: error.message });
+  }
+});
+
+
+
+// GET A LOAN BY ID//
+app.get('/api/loans/:id', verifyToken, async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const loan = await Loan.findByPk(id, {
+      include: [
+        { model: User },
+        { model: Book }     
+      ]
+    });
+    if (!loan) {
+      return res.status(404).json({ error: 'Loan not found' });
+    }
+    res.status(200).json(loan);
+  } catch (error) {
+    console.error('Error fetching loan:', error);
+    res.status(500).json({ error: 'An error occurred while fetching the loan.' });
+  }
+});
+// GET A BOOK BY ID //
+app.get('/api/books/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const book = await Book.findByPk(id);
+    if (!book) {
+      return res.status(404).json({ error: 'Book not found' });
+    }
+    res.status(200).json(book);
+  } catch (error) {
+    console.error('Error fetching book:', error);
+    res.status(500).json({ error: 'An error occurred while fetching the book.' });
+  }
+});
+
+// UPDATE BOOK //
+app.put('/api/books/:id', async (req, res) => {
+  const { id } = req.params;
+  const { title, author, genre, year, description } = req.body;
+
+  try {
+    const book = await Book.findByPk(id);
+    if (!book) {
+      return res.status(404).json({ error: 'Book not found' });
+    }
+
+    book.title = title;
+    book.author = author;
+    book.genre = genre;
+    book.year = year;
+    book.description = description;
+
+    await book.save();
+
+    res.status(200).json({ success: true, message: 'Book updated successfully', book });
+  } catch (error) {
+    console.error('Error updating book:', error);
+    res.status(500).json({ error: 'An error occurred while updating the book.' });
+  }
+});
+
+//GET USER BY ID //
+app.get('/api/users/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const user = await User.findByPk(id);
+    if (!user) {
+      return res.status(404).json({ error: 'Book not found' });
+    }
+    res.status(200).json(user);
+  } catch (error) {
+    console.error('Error fetching users:', error);
+    res.status(500).json({ error: 'An error occurred while fetching the users.' });
+  }
+});
+
+// GET ALL BOOKS //
+app.get('/api/books', async (req, res) => {
+  try {
+    const books = await Book.findAll();
+    res.status(200).json(books);
+  } catch (error) {
+    console.error('Error fetching books:', error);
+    res.status(500).json({ error: 'An error occurred while fetching books.' });
+  }
+});
+
+
+// ADD BOOK //
+app.post('/api/books', async (req, res) => {
+  const { title, author, genre, year } = req.body;
+
+  try {
+    const newBook = await Book.create({ title, author, genre, year });
+    res.status(201).json(newBook);
+  } catch (error) {
+    console.error('Error adding book:', error);
+    res.status(500).json({ error: 'An error occurred while adding the book.' });
+  }
+});
+
+
+// ADD BOOK //
+app.post('/api/books', async (req, res) => {
+  const { title, author, genre, year } = req.body;
+
+  try {
+    const newBook = await Book.create({ title, author, genre, year });
+    res.status(201).json(newBook);
+  } catch (error) {
+    console.error('Error adding book:', error);
+    res.status(500).json({ error: 'An error occurred while adding the book.' });
+  }
+});
+
+
+
+
+// GET BOOKS //
 app.get('/api/users', async (req, res) => {
   try {
     const users = await User.findAll();
@@ -293,6 +299,7 @@ app.get('/api/users', async (req, res) => {
 });
 
 
+// DELETE BOOK //
 app.delete('/api/books/:id', async (req, res) => {
   const { id } = req.params;
 
@@ -310,6 +317,8 @@ app.delete('/api/books/:id', async (req, res) => {
   }
 });
 
+
+//DELETE USER //
 app.delete('/api/users/:id', async (req, res) => {
   const { id } = req.params;
 
@@ -327,6 +336,8 @@ app.delete('/api/users/:id', async (req, res) => {
   }
 });
 
+
+//BOOK COUNT //
 app.get('/api/Bookcount', async (req, res) => {
   try {
     const bookCount = await Book.count();
@@ -337,7 +348,9 @@ app.get('/api/Bookcount', async (req, res) => {
     res.status(500).json({ error: 'An error occurred while fetching the book count.' });
   }
 });
-// Backend API route to fetch loans count
+
+
+//LOAN CCOUNT//
 app.get('/api/loanscount', async (req, res) => {
   try {
     const loansCount = await Loan.count();
@@ -348,7 +361,8 @@ app.get('/api/loanscount', async (req, res) => {
   }
 });
 
-// Backend API route to fetch users count
+
+//USER  COUNT//
 app.get('/api/userscount', async (req, res) => {
   try {
     const usersCount = await User.count();
