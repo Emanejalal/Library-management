@@ -29,9 +29,9 @@ sequelize.sync({ alter: true })
 
 //SIGN UP//
 app.post('/signup', async (req, res) => {
-  const { email, password, role } = req.body;
+  const { email, password, role, firstName, lastName } = req.body;
 
-  console.log('Signup request received:', { email, role });
+  console.log('Signup request received:', { email, role, firstName, lastName });
 
   try {
     const existingUser = await User.findOne({ where: { email } });
@@ -41,7 +41,7 @@ app.post('/signup', async (req, res) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = await User.create({ email, password: hashedPassword, role: role || 'user' });
+    const newUser = await User.create({ email, password: hashedPassword, role: role || 'user', firstName, lastName });
 
     console.log('New user created:', newUser);
     res.status(201).json({ success: true, message: 'User added successfully', user: newUser });
@@ -79,9 +79,9 @@ app.post('/login', async (req, res) => {
       return res.status(401).json({ success: false, message: 'Incorrect password' });
     }
 
-    const token = generateToken({ id: user.id, role: user.role });
-    console.log('User logged in successfully:', email); // For debugging
-    res.status(200).json({ success: true, token, role: user.role }); // Include the role in the response
+    const token = generateToken({ id: user.id,email:user.email , role: user.role ,firstName: user.firstName,lastName: user.lastName });
+    console.log('User logged in successfully:', email,user.role,user.firstName,user.lastName); // For debugging
+    res.status(200).json({ success: true, token, role: user.role, firstName:user.firstName , lastName: user.lastName}); // Include the role in the response
   } catch (error) {
     console.error('Login error:', error);
     res.status(500).json({ success: false, message: 'Internal server error', error: error.message });
@@ -244,7 +244,36 @@ app.get('/api/users/:id', async (req, res) => {
     res.status(500).json({ error: 'An error occurred while fetching the users.' });
   }
 });
+//USER UPDATE//
+app.put('/api/users/:id', async (req, res) => {
+  const { id } = req.params;
+  const { firstName, lastName, email } = req.body;
 
+  try {
+    // Find the user by ID
+    const user = await User.findByPk(id);
+    
+    // Check if the user exists
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    // Update the user's profile
+    user.firstName = firstName;
+    user.lastName = lastName;
+    user.email = email;
+
+    // Save the changes to the database
+    await user.save();
+
+    // Respond with success message
+    res.status(200).json({ success: true, message: 'User profile updated successfully', user });
+  } catch (error) {
+    // Handle errors
+    console.error('Error updating user profile:', error);
+    res.status(500).json({ error: 'An error occurred while updating user profile.' });
+  }
+});
 // GET ALL BOOKS //
 app.get('/api/books', async (req, res) => {
   try {
@@ -287,7 +316,7 @@ app.post('/api/books', async (req, res) => {
 
 
 
-// GET BOOKS //
+// GET USERS //
 app.get('/api/users', async (req, res) => {
   try {
     const users = await User.findAll();

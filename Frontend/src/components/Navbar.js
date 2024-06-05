@@ -8,11 +8,14 @@ function Navbar() {
   const navigate = useNavigate();
   const token = localStorage.getItem('token');
   let role;
+  let id;
 
   if (token) {
     try {
       const decodedToken = jwtDecode(token); // Use the correct named function
       role = decodedToken.role;
+      id = decodedToken.id;
+      console.log('ROLE AND ID :' ,role,id)
     } catch (error) {
       console.error('Failed to decode token:', error);
     }
@@ -42,12 +45,20 @@ function Navbar() {
         </div>
         <div className="ml-auto flex space-x-8">
           {token ? (
+            <>
             <button
               className="text-white bg-[#d4af7a]  w-fit border-transparent rounded px-4 py-2 font-bold no-underline"
               onClick={handleLogout}
             >
               Logout
             </button>
+            <Link
+            className="text-white bg-[#d4af7a]  w-fit border-transparent rounded px-4 py-2 font-bold no-underline"
+            to={`/edit-profile/${id}`}
+          >
+            Profile
+          </Link>
+          </>
           ) : (
             <>
               <Link className="text-white bg-[#d4af7a]  border-transparent rounded px-4 py-2 font-bold no-underline" to="/AuthPage">Login</Link>

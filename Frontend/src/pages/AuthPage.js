@@ -9,6 +9,8 @@ const AuthPage = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [role, setRole] = useState('user'); // Default role is user
+    const [firstName, setFirstName] = useState(''); // State for first name
+    const [lastName, setLastName] = useState(''); // State for last name
     const navigate = useNavigate();
 
     const toggleSignUp = () => {
@@ -17,18 +19,11 @@ const AuthPage = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Form submitted');
-        console.log({ email, password, confirmPassword, role });
         if (isSignUp) {
-            if (password !== confirmPassword) {
-                alert('Passwords do not match');
-                return;
-            }
-
             fetch('http://localhost:8084/signup', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password, role })
+                body: JSON.stringify({ email, password, role, firstName, lastName })
             })
                 .then(async res => {
                     if (!res.ok) {
@@ -38,15 +33,13 @@ const AuthPage = () => {
                     return res.json();
                 })
                 .then(data => {
-                    console.log('Response from server:', data);
                     if (data.success) {
                         alert('User added successfully');
-                        window.location.reload(); // This will refresh the page
+                        window.location.reload();
                     } else {
                         alert('Signup failed: ' + data.message);
                     }
                 })
-
                 .catch(error => {
                     console.error('Error:', error.message);
                     alert('Signup failed: ' + error.message);
@@ -106,6 +99,20 @@ const AuthPage = () => {
                 <form onSubmit={handleSubmit} style={{ maxWidth: '400px' }}>
                     <div className="form sign-up">
                         <h2>Create your Account</h2>
+                        <div className="flex flex-col items-center w-full mb-2 space-x-0 space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 sm:mb-6">
+                            <div>
+                                <label className='text-xs'>
+                                    FIRST NAME
+                                </label>
+                                <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} required/>
+                            </div>
+                            <div className="w-full">
+                                <label className='text-xs'>
+                                    LAST NAME
+                                </label>
+                                <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} required />
+                            </div>
+                        </div>
                         <label>
                             <span>Email</span>
                             <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
@@ -113,10 +120,6 @@ const AuthPage = () => {
                         <label>
                             <span>Password</span>
                             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                        </label>
-                        <label>
-                            <span>Confirm Password</span>
-                            <input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
                         </label>
                         <label>
                             <span>Role</span>

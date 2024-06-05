@@ -5,6 +5,7 @@ function generateToken(payload) {
   return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
 }
 
+
 function verifyToken(req, res, next) {
   const token = req.headers['authorization'];
   console.log('Request Headers:', token); // Log request headers for debugging

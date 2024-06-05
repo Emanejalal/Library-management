@@ -15,6 +15,7 @@ function BookList() {
       try {
         const decodedToken = jwtDecode(token); // Use the correct named function
         decodedRole = decodedToken.role;
+        console.log('ROOOOLE',decodedRole)
       } catch (error) {
         console.error('Failed to decode token:', error);
       }
