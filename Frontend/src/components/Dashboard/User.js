@@ -59,8 +59,8 @@ function RecentCustomers() {
           <tbody>
             {customers.map(customer => (
               <tr key={customer.id} className="border-b last:border-0 transition-colors duration-500 hover:bg-gray-700 hover:text-white">
-                <td className="py-3 px-2 w-16">
-                  <div className="relative w-10 h-10 rounded-full overflow-hidden">
+                <td className="py-3 px-2 w-5">
+                  <div className="relative w-4 h-10 rounded-full overflow-hidden">
                     {/* Placeholder for user image if you have any */}
                   </div>
                 </td>

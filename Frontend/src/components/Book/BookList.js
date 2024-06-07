@@ -74,24 +74,29 @@ function BookList() {
               </tr>
             </thead>
             <tbody>
-              {books.map(book => (
-                <tr key={book.id} className="border-b last:border-0">
-                  <td className="px-6 py-4 whitespace-nowrap">{book.title}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">{book.author}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">{book.genre}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">{book.year}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+              {books
+                .filter(book => {
+                  console.log('Checking book:', book);
+                  return book.available; // Filter books to only show available ones
+                })
+                .map(book => (
+                  <tr key={book.id} className="border-b last:border-0">
+                    <td className="px-6 py-4 whitespace-nowrap">{book.title}</td>
+                    <td className="px-6 py-4 whitespace-nowrap">{book.author}</td>
+                    <td className="px-6 py-4 whitespace-nowrap">{book.genre}</td>
+                    <td className="px-6 py-4 whitespace-nowrap">{book.year}</td>
+                    <td className="px-6 py-4 whitespace-nowrap">
 
-                    {token && role === 'admin' && (
-                      <Link to={`/edit-book/${book.id}`} className="btn btn-secondary ml-2 w-24">Edit</Link>
-                    )}
-                    <Link to={`/add-loan/${book.id}`} className="btn btn-secondary ml-2 w-24">Loan</Link>
-                    {token && role === 'admin' && (
-                      <button onClick={() => handleDelete(book.id)} className="btn btn-secondary ml-2 w-24">Delete</button>
-                    )}
-                  </td>
-                </tr>
-              ))}
+                      {token && role === 'admin' && (
+                        <Link to={`/edit-book/${book.id}`} className="btn btn-secondary ml-2 w-24">Edit</Link>
+                      )}
+                      <Link to={`/add-loan/${book.id}`} className="btn btn-secondary ml-2 w-24">Loan</Link>
+                      {token && role === 'admin' && (
+                        <button onClick={() => handleDelete(book.id)} className="btn btn-secondary ml-2 w-24">Delete</button>
+                      )}
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         )}

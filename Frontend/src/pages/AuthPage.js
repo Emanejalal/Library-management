@@ -74,7 +74,9 @@ const AuthPage = () => {
                     <h2>Welcome</h2>
                     <label>
                         <span>Email</span>
-                        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                        <input type="email"
+                            id="email"
+                            name="email" onChange={(e) => setEmail(e.target.value)} />
                     </label>
                     <label>
                         <span>Password</span>
@@ -104,7 +106,7 @@ const AuthPage = () => {
                                 <label className='text-xs'>
                                     FIRST NAME
                                 </label>
-                                <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} required/>
+                                <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} required />
                             </div>
                             <div className="w-full">
                                 <label className='text-xs'>

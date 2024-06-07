@@ -53,6 +53,7 @@ function Loans() {
     fetchLoanDetails();
   }, []);
 
+
   return (
     <div className="p-5">
       <div className="flex flex-wrap justify-between shadow-lg">

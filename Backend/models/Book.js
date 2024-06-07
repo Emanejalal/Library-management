@@ -17,6 +17,11 @@ const Book = sequelize.define('Book', {
   year: {
     type: DataTypes.INTEGER,
     allowNull: false
+  },
+  available: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: true
   }
 }, {
   timestamps: true  // this will add createdAt and updatedAt fields automatically

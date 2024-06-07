@@ -27,7 +27,6 @@ const EditProfile = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            console.log('IDDDDDDDDDDDDD',userId)
             const response = await fetch(`http://localhost:8084/api/users/${userId}`, {
                 method: 'PUT',
                 headers: {
@@ -38,6 +37,7 @@ const EditProfile = () => {
             });
             if (response.ok) {
                 console.log('User profile updated successfully');
+                alert('User profile updated successfully')
             } else {
                 console.error('Failed to update user profile');
             }

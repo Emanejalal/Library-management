@@ -13,7 +13,7 @@ const Book = require('./models/Book');
 const Loan = require('./models/Loan');
 
 const app = express();
-const PORT = process.env.PORT || 8082;
+const PORT = process.env.PORT || 8082; 
 
 app.use(bodyParser.json());
 app.use(cors()); // Add this line to enable CORS
@@ -112,7 +112,7 @@ app.put('/api/loans/:id', verifyToken, async (req, res) => {
   }
 });
 
-// GET BOOKS // 
+// GET LOANS // 
 app.get('/api/loans', verifyToken, async (req, res) => {
   try {
     console.log("User role:", req.userRole); // For debugging
@@ -156,14 +156,25 @@ app.post('/api/loans', async (req, res) => {
       return res.status(404).json({ success: false, message: 'Book not found' });
     }
 
+    // Check if the book is available
+    if (!book.available) {
+      return res.status(400).json({ success: false, message: 'Book is currently not available for loan' });
+    }
+
     // Create a new loan
     const newLoan = await Loan.create({ userId, bookId, loanDate, returnDate });
+
+    // Set the book as not available
+    book.available = false;
+    await book.save();
+
     res.status(201).json({ success: true, message: 'Loan added successfully', loan: newLoan });
   } catch (error) {
     console.error('Error adding loan:', error);
     res.status(500).json({ success: false, message: 'Internal server error', error: error.message });
   }
 });
+
 
 
 
@@ -324,6 +335,36 @@ app.get('/api/users', async (req, res) => {
   } catch (error) {
     console.error('Error fetching users:', error);
     res.status(500).json({ error: 'An error occurred while fetching users.' });
+  }
+});
+//DeLETE LOAN //
+app.delete('/api/loans/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    // Find the loan by ID
+    const loan = await Loan.findByPk(id);
+    if (!loan) {
+      return res.status(404).json({ error: 'Loan not found' });
+    }
+
+    // Find the book by ID
+    const book = await Book.findByPk(loan.bookId);
+    if (!book) {
+      return res.status(404).json({ error: 'Book not found' });
+    }
+
+    // Delete the loan
+    await loan.destroy();
+
+    // Set the book as available
+    book.available = true;
+    await book.save();
+
+    res.status(200).json({ message: 'Loan deleted and book set to available successfully' });
+  } catch (error) {
+    console.error('Error deleting loan:', error);
+    res.status(500).json({ error: 'An error occurred while deleting the loan.' });
   }
 });
 

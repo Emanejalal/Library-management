@@ -54,8 +54,24 @@ function LoanList() {
     fetchLoanDetails();
   }, []);
 
+  const handleDelete = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:8084/api/loans/${id}`, {
+        method: 'DELETE',
+      });
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      setLoans(loans.filter(loan => loan.id !== id));
+    } catch (error) {
+      console.error('Error deleting loan:', error);
+      setError(error.message);
+    }
+  };
+  
+
   return (
-    <div className=" bg-gray-100 flex justify-center ">
+    <div className="bg-gray-100 flex justify-center">
       <div className="w-full max-w-screen-lg">
         <div className="relative bg-white p-5 shadow-lg rounded-2xl">
           <div className="flex justify-between items-start mb-5">
@@ -66,11 +82,11 @@ function LoanList() {
           ) : (
             <table className="w-full border-collapse mt-2">
               <thead>
-                <tr className="bg-[#ebdece] ">
+                <tr className="bg-[#ebdece]">
                   <th className="px-6 py-3 text-left font-bold text-lg text-gray-500 uppercase tracking-wider">User</th>
                   <th className="px-6 py-3 text-left font-bold text-lg text-gray-500 uppercase tracking-wider">Book</th>
                   <th className="px-6 text-center font-bold text-lg text-gray-500 uppercase tracking-wider">Loan Date</th>
-                  <th className="px-6 py-3  text-right  font-bold text-lg  text-gray-500 uppercase tracking-wider">Return Date</th>
+                  <th className="px-6 py-3 text-right font-bold text-lg text-gray-500 uppercase tracking-wider">Return Date</th>
                   <th className="px-6 py-3 text-right font-bold text-lg text-gray-500 uppercase tracking-wider">Actions</th>
                 </tr>
               </thead>
@@ -83,6 +99,7 @@ function LoanList() {
                     <td className="py-2 text-right">{loan.returnDate ? new Date(loan.returnDate).toLocaleDateString() : 'Not Returned'}</td>
                     <td className="py-2 text-right">
                       <Link to={`/edit-loan/${loan.id}`} className="btn btn-secondary ml-2 w-24">Edit</Link>
+                      <button onClick={() => handleDelete(loan.id)} className="btn btn-secondary ml-2 w-24">Delete</button>
                     </td>
                   </tr>
                 ))}
