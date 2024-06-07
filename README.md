@@ -1,4 +1,4 @@
-![add book](https://github.com/Emanejalal/Library-management/assets/155189345/445543e0-ea53-4fa8-a677-48496be2a5f8)# Libratech
+# Libratech
 Libratech est une application SaaS de gestion de bibliothèque conçue pour offrir une solution complète et intuitive 
 pour la gestion des livres et des prêts. La plateforme permet aux administrateurs et aux utilisateurs de gérer les 
 ressources de la bibliothèque de manière efficace.
