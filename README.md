@@ -150,8 +150,77 @@ Gérez les utilisateurs sur la page Utilisateurs.
 
 Modifiez vos informations personnelles sur la page de Profil.
 
+## Routes Backend de Libratech
+
+#### Routes d'Authentification (auth_routes)
+
+![Screenshot 2024-06-07 065557](https://github.com/Emanejalal/Library-management/assets/155189345/08617a2d-7f29-498e-b297-a6b94593b745)
 
 
+POST /signup : Inscription d'un nouvel utilisateur.
+
+POST /login : Connexion d'un utilisateur existant.
+
+
+### Routes de Gestion des Livres (book_routes)
+
+![Screenshot 2024-06-07 065609](https://github.com/Emanejalal/Library-management/assets/155189345/9d5abc73-ad0a-4e10-a066-1b1168d0b38c)
+
+
+POST / : Ajout d'un nouveau livre.
+
+GET / : Récupération de la liste de tous les livres.
+
+GET /
+: Récupération des informations d'un livre par son ID.
+
+PUT /
+: Mise à jour des informations d'un livre par son ID.
+
+DELETE /
+: Suppression d'un livre par son ID.
+
+GET /count : Récupération du nombre total de livres.
+
+
+### Routes de Gestion des Prêts (loan_routes)
+
+![Screenshot 2024-06-07 065618](https://github.com/Emanejalal/Library-management/assets/155189345/3627db27-4bb3-46d5-8f5b-e9a04f8c0c13)
+
+
+POST / : Ajout d'un nouveau prêt.
+
+GET / : Récupération de la liste de tous les prêts.
+
+GET /
+: Récupération des informations d'un prêt par son ID.
+
+PUT /
+: Mise à jour des informations d'un prêt par son ID.
+
+DELETE /
+: Suppression d'un prêt par son ID.
+
+GET /count : Récupération du nombre total de prêts
+
+
+### Routes de Gestion des Utilisateurs (user_routes)
+
+![Screenshot 2024-06-07 065624](https://github.com/Emanejalal/Library-management/assets/155189345/fef079a6-bbdc-49ff-aa4c-1d6fb79c659c)
+
+
+GET /
+: Récupération des informations d'un utilisateur par son ID.
+
+PUT /
+: Mise à jour des informations d'un utilisateur par son ID.
+
+GET / : Récupération de la liste de tous les utilisateurs.
+
+DELETE /
+: Suppression d'un utilisateur par son ID.
+
+GET /count : Récupération du nombre total d'utilisateurs.
 
 
 
