@@ -40,12 +40,14 @@ JWT (JSON Web Tokens): Pour l'authentification sécurisée des utilisateurs.
 
 ### Page de Connexion et d'Inscription
 
-### Login: Les utilisateurs peuvent se connecter en fournissant leur email et mot de passe.
+Login: Les utilisateurs peuvent se connecter en fournissant leur email et mot de passe.
+
 ![login](https://github.com/Emanejalal/Library-management/assets/155189345/ee1d5de4-58fc-461b-bf10-252c4bb640a5)
 
-### Signup: Les nouveaux utilisateurs peuvent créer un compte en fournissant leur nom, prénom,
+Signup: Les nouveaux utilisateurs peuvent créer un compte en fournissant leur nom, prénom,
 email et mot de passe.
-### Choix du Rôle: Lors de l'inscription, les utilisateurs peuvent choisir leur rôle (Administrateur ou Utilisateur) pour personnaliser leur expérience sur la plateforme.
+
+Choix du Rôle: Lors de l'inscription, les utilisateurs peuvent choisir leur rôle (Administrateur ou Utilisateur) pour personnaliser leur expérience sur la plateforme.
 
 ![signup](https://github.com/Emanejalal/Library-management/assets/155189345/36ca2ce1-ef8d-45fe-accb-6220afede93a)
 
@@ -61,6 +63,7 @@ Tableau de Bord: Visualisation des livres disponibles et liste des prêts actuel
 Page Livres: Consultation des livres disponibles et ajout de livres à la liste des prêts.
 
 ![booklist user](https://github.com/Emanejalal/Library-management/assets/155189345/eba59f23-c21d-46cc-a434-481a17b7e013)
+
 ![add loan](https://github.com/Emanejalal/Library-management/assets/155189345/582d7c94-5e83-4a48-8bcc-dac126e284bc)
 
 Page Prêts: Gestion des prêts de l'utilisateur avec options pour ajouter des prêts.
@@ -77,6 +80,7 @@ Page de Profil: Modification des informations personnelles (nom, prénom, email)
 ### Interface Administrateur
 
 Tableau de Bord: Visualisation des livres disponibles, des prêts, des utilisateurs et des statistiques.
+
 ![dash admin](https://github.com/Emanejalal/Library-management/assets/155189345/127c40eb-f759-42eb-9141-ab959e535515)
 
 ![dash 2 admin](https://github.com/Emanejalal/Library-management/assets/155189345/a5b55c6b-b83a-4504-b4ed-fd89db7f05ae)
@@ -88,6 +92,7 @@ Page Livres: Gestion des livres avec options pour ajouter, éditer et supprimer 
 ![book list admin](https://github.com/Emanejalal/Library-management/assets/155189345/6306b838-20c3-4507-866d-48f36f5159d9)
 
 ![edit book](https://github.com/Emanejalal/Library-management/assets/155189345/69127913-c99b-497b-8308-9c03c837fa9e)
+
 ![add book](https://github.com/Emanejalal/Library-management/assets/155189345/98592fe0-f014-46c0-9fd4-9f328ab32920)
 
 
@@ -122,18 +127,27 @@ Présentation de l'équipe de développement.
 ### Pour les utilisateurs
 
 Créez un compte ou connectez-vous.
+
 Consultez les livres disponibles sur le tableau de bord.
+
 Ajoutez des livres à votre liste de prêts depuis la page Livres.
+
 Gérez vos prêts sur la page Prêts.
+
 Modifiez vos informations personnelles sur la page de Profil.
 
 ### Pour les administrateurs
 
 Créez un compte ou connectez-vous en tant qu'administrateur.
+
 Visualisez les statistiques sur le tableau de bord.
+
 Gérez les livres sur la page Livres.
+
 Gérez les prêts des utilisateurs sur la page Prêts.
+
 Gérez les utilisateurs sur la page Utilisateurs.
+
 Modifiez vos informations personnelles sur la page de Profil.
 
 
