@@ -17,8 +17,21 @@ function CardBox() {
     };
 
     const fetchLoansCount = async () => {
+      const token = localStorage.getItem('token'); // Retrieve the token from localStorage
+
       try {
-        const response = await fetch('http://localhost:8084/api/loanscount');
+        const response = await fetch('http://localhost:8084/api/loancount', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}` // Include the Authorization header
+          }
+        });
+        
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+
         const data = await response.json();
         setLoansCount(data.loansCount);
       } catch (error) {
@@ -36,6 +49,7 @@ function CardBox() {
       }
     };
 
+    // Fetch counts when the component mounts
     fetchBookCount();
     fetchLoansCount();
     fetchUsersCount();
@@ -70,7 +84,6 @@ function CardBox() {
           <ion-icon name="people-outline"></ion-icon>
         </div>
       </div>
-      
     </div>
   );
 }

@@ -55,20 +55,27 @@ function LoanList() {
   }, []);
 
   const handleDelete = async (id) => {
+    const token = localStorage.getItem('token'); // Retrieve the token from localStorage
     try {
       const response = await fetch(`http://localhost:8084/api/loans/${id}`, {
         method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}` 
+        }
       });
+
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
+
+      // Update the state to remove the deleted loan
       setLoans(loans.filter(loan => loan.id !== id));
     } catch (error) {
       console.error('Error deleting loan:', error);
       setError(error.message);
     }
   };
-  
 
   return (
     <div className="bg-gray-100 flex justify-center">
