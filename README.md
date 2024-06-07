@@ -17,11 +17,17 @@ Licence
 ## Technologies Utilisées
 
 Node.js: Pour le backend et le serveur.
+
 Express.js: Framework pour la création de l'API.
+
 React: Bibliothèque JavaScript pour la création de l'interface utilisateur.
+
 Tailwind CSS: Framework CSS pour la mise en forme.
+
 MySQL: Base de données relationnelle.
+
 bcrypt: Pour le hachage des mots de passe.
+
 JWT (JSON Web Tokens): Pour l'authentification sécurisée des utilisateurs.
 
 ## Fonctionnalités
