@@ -40,12 +40,12 @@ JWT (JSON Web Tokens): Pour l'authentification sécurisée des utilisateurs.
 
 ### Page de Connexion et d'Inscription
 
-Login: Les utilisateurs peuvent se connecter en fournissant leur email et mot de passe.
+### Login: Les utilisateurs peuvent se connecter en fournissant leur email et mot de passe.
 ![login](https://github.com/Emanejalal/Library-management/assets/155189345/ee1d5de4-58fc-461b-bf10-252c4bb640a5)
 
-Signup: Les nouveaux utilisateurs peuvent créer un compte en fournissant leur nom, prénom,
+### Signup: Les nouveaux utilisateurs peuvent créer un compte en fournissant leur nom, prénom,
 email et mot de passe.
-Choix du Rôle: Lors de l'inscription, les utilisateurs peuvent choisir leur rôle (Administrateur ou Utilisateur) pour personnaliser leur expérience sur la plateforme.
+### Choix du Rôle: Lors de l'inscription, les utilisateurs peuvent choisir leur rôle (Administrateur ou Utilisateur) pour personnaliser leur expérience sur la plateforme.
 
 ![signup](https://github.com/Emanejalal/Library-management/assets/155189345/36ca2ce1-ef8d-45fe-accb-6220afede93a)
 
