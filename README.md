@@ -30,7 +30,7 @@ JWT (JSON Web Tokens): Pour l'authentification sécurisée des utilisateurs.
 
 Tableau de Bord: Visualisation des livres disponibles et liste des prêts actuels.
 
-![dashusers ](https://github.com/Emanejalal/Library-management/Frontend/src/images/aboutus)
+![dashusers ](https://github.com/Emanejalal/Library-management/Frontend/src/images/aboutus.png)
 
 
 Page Livres: Consultation des livres disponibles et ajout de livres à la liste des prêts.
