@@ -6,11 +6,17 @@ ressources de la bibliothèque de manière efficace.
 ## Table des matières
 
 Fonctionnalités
+
 Technologies Utilisées
+
 Installation
+
 Utilisation
+
 Structure du Projet
+
 Contributeurs
+
 Licence
 
 
